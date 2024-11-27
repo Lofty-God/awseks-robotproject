@@ -1,0 +1,21 @@
+PREREQUISITE FOR AWS EKS
+######### install EKSCTL ###########
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+######### installing eksctl
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+
+
+sudo mv /tmp/eksctl /usr/local/bin
+
+########## installing awscli  ############
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+###### Link for Installing kubectl #######
+kubectl link
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+
+AWS CONFIGURE

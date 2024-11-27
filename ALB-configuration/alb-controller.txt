@@ -1,0 +1,10 @@
+######## Deploy ALB CONTROLLER
+Download and install helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update eks
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller --set clusterName=demo-cluster-three-tier-1 -n kube-system --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
+
+kubectl get deployment -n kube-system aws-load-balancer-controller

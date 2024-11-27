@@ -1,0 +1,11 @@
+######### Create the addon
+eksctl create addon --name aws-ebs-csi-driver --cluster demo-cluster-three-tier-1 --service-account-role-arn arn:aws:iam::438465168410:role/AmazonEKS_EBS_CSI_DriverRole --force
+
+########## Clone github repository for k8s manifest file
+git clone https://github.com/iam-veeramalla/three-tier-architecture-demo.git
+$ kubectl create ns robot-shop
+$ helm install robot-shop --namespace robot-shop .
+kubectl get pods -n robot-shop
+for the ingress.yaml file use spec.ingressClassName insted of kubernetes.io/ingress.class
+kubectl apply -f ingress.yaml
+kubectl get ingress -n robot-shop

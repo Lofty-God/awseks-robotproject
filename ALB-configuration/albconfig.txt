@@ -1,0 +1,23 @@
+####### IAM POLICY CONFIG
+Download IAM-Policy
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+
+aws iam create-policy --policy-name iam-policy --policy-document file://iam_policy.json
+
+############## Create IAM service account
+eksctl create iamserviceaccount \
+  --cluster=demo-cluster-three-tier-1 \
+  --namespace=kube-system \
+  --name=aws-load-balancer-controller \
+  --role-name AmazonEKSLoadBalancerControllerRole \
+  --attach-policy-arn=arn:aws:iam::438465168410:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve
+########## create iam service account
+eksctl create iamserviceaccount \
+    --name ebs-csi-controller-sa \
+    --namespace kube-system \
+    --cluster demo-cluster-three-tier-1 \
+    --role-name AmazonEKS_EBS_CSI_DriverRole \
+    --role-only \
+    --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+    --approve
